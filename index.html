@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<script defer src="sniegas.js"></script>
+<script defer src="/scripts/universal.js"></script>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centered Hello</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>duhas.LOL</title>
+    <link rel="icon" href="/assets/.lol.png" type="image/png">
+    <link rel="icon" href="/assets/.lol.ico" type="image/x-icon">
+    <script defer src="/scripts/universal.js"></script>
+    <link rel="stylesheet" href="/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added for mobile responsiveness -->
 </head>
+
 <body>
 
-    <canvas id="particle-container"></canvas>
-    <nav>
-        <div id="nav-container">
-            <p id="brand"><span id="brand-highlight">duhas</span>.LOL</p>
-            <div id="nav-items">
-                <button type="button" aria-label="Mobile menu" id="menu-icon" class="unselectable"><img class="unselectable" src="assets/menu.svg" alt="" width="30" height="30"></button>
-                <ul id="menu-list" class="unselectable">
-                    <li><a class="unselectable" href="/">Home</a></li>
-                    <li><a class="unselectable" href="/">Nezinau</a></li>
-                    <li><a class="unselectable" href="/">Tuscia</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="center-text">Tvarkoma, tvarkoma, iki rytojaus ;D</div>
+    <!-- Search Bar -->
+    <div id="search-container">
+        <input type="text" id="search-bar" placeholder="Ko reikia?" aria-label="Search">
+    </div>
 
+    <!-- Cards Container -->
+    <div id="cards-container"></div>
 
+    <div id="footer-text">
+        <p>kas skaitys, tas gaidys =DD</p>
+    </div>
+
+    <script src="scripts/script.js"></script>
 </body>
 </html>

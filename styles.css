@@ -1,21 +1,43 @@
-body { 
-    overflow-x: hidden; /* sniegas */
-    margin: 0; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh; 
-    font-family: Arial, sans-serif; 
-    background-color: #1F2020; /* Updated background color */
-    color: #FFF; /* Optional: set text color to white for contrast */
-}
-.center-text { 
-    font-size: 2rem; 
+:root {
+    --fonas-site: #212121;
+    --json-langeliai: #2F2F2F;
+    --navbar-backround: #1F2020; /* Example, update with the actual color */
+    --navbar-line: #6366F1; /* Example, update with the actual color */
+    --link-button: #6366f1; /* Example, update with the actual color */
+    --main-color-1: white; /* Example, update with the actual color */
 }
 
+/* Body and General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+}
 
-/* Nav (stolen haha)*/
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  /* Start alignment to prevent overlap */
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    font-family: Arial, sans-serif;
+    background-color: #1F2020;
+    color: #FFF;
+    padding: 20px;  /* Adds padding to ensure content isn't touching the edges */
+    box-sizing: border-box;
+    overflow-y: auto;  /* Allow scrolling if needed */
+}
 
+/* Center Text */
+.center-text {
+    font-size: 2rem;
+}
+
+/* Navbar Styles */
 nav {
     z-index: 1;
     position: fixed;
@@ -43,7 +65,7 @@ nav {
     font-size: 1.25rem;
     font-weight: bold;
     text-transform: uppercase;
-    user-select: none;
+    user-select: none; /* Prevent text selection */
 }
 
 #brand-highlight {
@@ -73,7 +95,7 @@ nav {
     font-weight: bold;
     font-size: 0.875rem;
     text-decoration: none;
-    user-select: none;
+    user-select: none; /* Prevent text selection */
 }
 
 #menu-list > li > a::after, #menu-list > li > a:hover::after {
@@ -174,31 +196,31 @@ nav {
     }
 }
 
-/* ScrollBar from StackFlow */
+/* ScrollBar Styles */
 * {
     scrollbar-width: thin;
     scrollbar-color: #3F3F46 #18181b;
-  }
-  
-  ::-webkit-scrollbar {
+}
+
+::-webkit-scrollbar {
     width: 8px;
-  }
-  
-  ::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-track {
     background-color: #18181b;
-  }
-  
-  ::-webkit-scrollbar-thumb {
+}
+
+::-webkit-scrollbar-thumb {
     background-image: linear-gradient(to bottom, #6366f1, #818cf8);
     border-radius: 10px;
     border: 2px solid #18181b;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background-image: linear-gradient(to bottom, #4f46e5, #6366f1);
-  }
-  
+}
 
+::-webkit-scrollbar-thumb:hover {
+    background-image: linear-gradient(to bottom, #4f46e5, #6366f1);
+}
+
+/* Prevent text selection */
 .unselectable {
     -webkit-user-drag: none;
     -moz-user-select: none;
@@ -207,9 +229,185 @@ nav {
     user-select: none;
 }
 
-/* sniegas */
+/* Particle container (if used for snow effect) */
 #particle-container {
     z-index: 10;
     position: fixed;
     pointer-events: none;
+}
+
+/* Rainbow Animation for Text */
+@keyframes rainbow {
+    0% { color: red; }
+    14% { color: orange; }
+    28% { color: yellow; }
+    42% { color: green; }
+    57% { color: blue; }
+    71% { color: indigo; }
+    85% { color: violet; }
+    100% { color: red; }
+}
+
+#lol {
+    animation: rainbow 5s infinite;
+}
+
+/* Search Bar and Cards Layout */
+#search-container {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 80px; /* Adds space between navbar and search bar */
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Cards Container */
+#cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px; /* Adds space between search bar and cards */
+}
+
+/* Card Styles */
+/* Card Styles */
+.card {
+    background-color: var(--json-langeliai);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adds a gap between text and button */
+}
+
+/* Card Title and Text Styling */
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.button-link {
+    text-decoration: none;
+}
+
+
+/* Make sure the input bar has padding and some height to be more prominent */
+#search-bar {
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 500px;
+    background-color: transparent;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    color: #fff;
+}
+
+
+/* Prevent text selection */
+.unselectable {
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/* Button Styles */
+.card-button {
+    background-color: var(--link-button);
+    color: white;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Adds space between the text and the button */
+    width: 100%; /* Makes the button expand fully */
+    box-sizing: border-box; /* Ensures padding is included in the width calculation */
+}
+
+
+.card-button:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+/* pages java tools */
+
+
+/* Center Text */
+.center-text {
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* Calculator Container */
+.calculator {
+    background-color: var(--json-langeliai);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Button Styles */
+.card-button {
+    background-color: var(--link-button);
+    color: white;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Adds space between the text and the button */
+    width: 100%; /* Makes the button expand fully */
+    box-sizing: border-box; /* Ensures padding is included in the width calculation */
+}
+
+.card-button:hover {
+    background-color: rgb(202, 202, 202);
+}
+
+/* Input Field */
+.input-field {
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 400px;
+    background-color: transparent;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    color: #fff;
+}
+
+/* Result Styling */
+.result {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: #fff;
+}
+
+#footer-text {
+    text-align: center;
+    margin-top: 20px;
+    color: rgb(119, 119, 119);  /* Adjust text color to fit your design */
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
 }
