@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<script defer src="sniegas.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKP24/1 Saitas yo</title>
-    <style>
-        body {
-            background-color: black;
-            color: rgb(255, 0, 0); /* You can change the RGB values to any color you like */
-            font-family: Arial, sans-serif;
-            text-align: center;
-            font-size: 3em;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
+    <title>Centered Hello</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div>
-        SKP24/1 Saitas yo
-    </div>
+
+    <canvas id="particle-container"></canvas>
+    <nav>
+        <div id="nav-container">
+            <p id="brand"><span id="brand-highlight">duhas</span>.LOL</p>
+            <div id="nav-items">
+                <button type="button" aria-label="Mobile menu" id="menu-icon" class="unselectable"><img class="unselectable" src="assets/menu.svg" alt="" width="30" height="30"></button>
+                <ul id="menu-list" class="unselectable">
+                    <li><a class="unselectable" href="/">Home</a></li>
+                    <li><a class="unselectable" href="/">Nezinau</a></li>
+                    <li><a class="unselectable" href="/">Tuscia</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="center-text">Tvarkoma, tvarkoma, iki rytojaus ;D</div>
+
+
 </body>
 </html>
