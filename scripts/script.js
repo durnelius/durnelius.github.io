@@ -7,9 +7,9 @@ function createCards(cards) {
         const cardElement = document.createElement('div');
         cardElement.classList.add('card');
         
-        // Check if the card has a link and description
-        const hasLink = card.description.includes('[ Link ]');
-        const descriptionText = hasLink ? card.description.replace('[ Link ]', '') : card.description;
+        // Check if the card has a valid link, otherwise use '#' as fallback
+        const hasLink = card.link && card.link !== ''; // Ensure link is not empty
+        const descriptionText = card.description; // Just use the description as is
         const buttonLink = hasLink ? card.link : '#';  // If a link exists, use it; otherwise, fallback to '#'
 
         cardElement.innerHTML = `
