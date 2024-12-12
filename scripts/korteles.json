@@ -1,5 +1,10 @@
 [
     {
+        "title": "ŠTMC Tvarkaraštis",
+        "description": "",
+        "link": "https://stmc-st-sk.edupage.org/timetable/view.php?class=-50"
+    },
+    {
         "title": "Trigonometrijos Skaičiuotuvas",
         "description": "Apskaičiuoja sinusą, kosinusą ir tangensą",
         "link": "/tools/con-sin-tang.html"
