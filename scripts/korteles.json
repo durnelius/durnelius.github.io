@@ -1,12 +1,17 @@
 [
     {
         "title": "ŠTMC Tvarkaraštis",
-        "description": "",
-        "link": "https://stmc-st-sk.edupage.org/timetable/view.php?class=-50"
+        "link": "https://stmc-st-sk.edupage.org/timetable/view.php?class=-50",
+        "glow": "#6366F1"
     },
     {
-        "title": "Trigonometrijos Skaičiuotuvas",
-        "description": "Apskaičiuoja sinusą, kosinusą ir tangensą",
-        "link": "/tools/con-sin-tang.html"
+        "title": "Project Simas - soon",
+        "link": "/tools/simas.html"
+    },
+    {
+        "title": "Balai i pažymius", 
+        "description": "Apskaičiuoja balus i pažymi", 
+        "link": "/tools/balai-i-pazimi.html"
     }
+    
 ]

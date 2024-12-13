@@ -12,13 +12,22 @@ function createCards(cards) {
         const descriptionText = card.description; // Just use the description as is
         const buttonLink = hasLink ? card.link : '#';  // If a link exists, use it; otherwise, fallback to '#'
 
-        cardElement.innerHTML = `
+        // Check if the card has a glow property and apply it if it exists
+        const glow = card.glow; // Assuming glow is a hex value in the JSON
+        if (glow && /^#[0-9A-F]{6}$/i.test(glow)) {
+            cardElement.style.boxShadow = `0 0 15px 5px ${glow}`;
+        }
+
+        // Build the inner HTML for the card, conditionally including the description
+        let cardContent = `
             <h3>${card.title}</h3>
-            <p>${descriptionText}</p>
+            ${descriptionText ? `<p>${descriptionText}</p>` : ''}  <!-- Only show description if it exists -->
             <a href="${buttonLink}" class="button-link" target="_blank">
                 <button class="card-button">Enter</button>
             </a>
         `;
+
+        cardElement.innerHTML = cardContent;
 
         container.appendChild(cardElement);
     });
