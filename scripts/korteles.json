@@ -6,12 +6,8 @@
     },
     {
         "title": "ŠTMC pamokų laikas",
-        "link": "/assets/pmklk.jpg",
+        "link": "/assets/ps.jpg",
         "glow": "#6366F1"
-    },
-    {
-        "title": "ŠTMC Praktinis laikas ",
-        "link": "/assets/ps.jpg"
     },
     {
         "title": "Balai i pažymius", 
@@ -20,6 +16,7 @@
     }
     
 ]
+
 
 
 
