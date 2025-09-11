@@ -10,10 +10,15 @@
         "glow": "#6366F1"
     },
     {
+        "title": "ŠTMC Praktinis laikas ",
+        "link": "/assets/pmklkp.jpg"
+    },
+    {
         "title": "Balai i pažymius", 
         "description": "Apskaičiuoja balus i pažymi", 
         "link": "/tools/balai-i-pazimi.html"
     }
     
 ]
+
 
