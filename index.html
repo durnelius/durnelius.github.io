@@ -22,10 +22,34 @@
     <!-- Cards Container -->
     <div id="cards-container"></div>
 
-    <div id="footer-text">
-        <p>owner duxas</p>
-    </div>
+<div id="footer-text">
+    <p>owner duxas</p>
+    <p id="time-counter"></p>
+</div>
 
     <script src="scripts/script.js"></script>
 </body>
+    <script>
+    function updateTime() {
+        const now = new Date();
+        const milliseconds = now.getMilliseconds();
+        const seconds = now.getSeconds();
+        const minutes = now.getMinutes();
+        const hours = now.getHours();
+
+        // Format time to look like HH:MM:SS:MS
+        const timeString = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}:${padZero(milliseconds, 3)}`;
+
+        document.getElementById("time-counter").textContent = timeString;
+    }
+
+    // Helper function to pad single digits with zero
+    function padZero(num, length = 2) {
+        return num.toString().padStart(length, '0');
+    }
+
+    // Call updateTime every 1 millisecond
+    setInterval(updateTime, 1);
+</script>
 </html>
+
