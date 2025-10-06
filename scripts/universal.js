@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Particle animation for winter months
     const canvas = particleContainer;
 
-    const winterMonths = [10, 11, 0]; // November, December, January
+    const winterMonths = [10, 11, 0, 1, 2, 3 ,4 ,5 ,6 ,7 ,8 ,9]; // November, December, January
 
     if (winterMonths.includes(new Date().getMonth())) {
         const ctx = canvas.getContext('2d');
@@ -139,3 +139,4 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         canvas.remove();
     }
+
