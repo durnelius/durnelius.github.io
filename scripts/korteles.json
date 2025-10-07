@@ -1,7 +1,12 @@
 [
     {
-        "title": "ŠTMC Tvarkaraštis",
+        "title": "baxuru Tvarkaraštis",
         "link": "https://stmc-st-sk.edupage.org/timetable/view.php?class=-67",
+        "glow": "#6366F1"
+    },
+    {
+        "title": "bueno Tvarkaraštis",
+        "link": "https://stmc-st-sk.edupage.org/timetable/view.php?class=-59",
         "glow": "#6366F1"
     },
     {
@@ -16,6 +21,7 @@
     }
     
 ]
+
 
 
 
