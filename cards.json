@@ -1,12 +1,13 @@
 [
   {
-    "title": "Starter Plan",
-    "description": "A clean baseline for simple sites and prototypes.",
-    "button": { "text": "Get started", "href": "https://example.com/start" }
+    "title": "SKP24/1",
+    "description": "SKP24/1 Baxuru tvarkarastis",
+    "button": { "text": "view", "href": "https://stmc-st-sk.edupage.org/timetable/view.php?class=-67" }
   },
   {
-    "title": "Pro Tools",
-    "description": "Extra polish with zero bloat. Tweak the JSON, not the code.",
-    "button": { "text": "See features", "href": "https://example.com/features" }
+    "title": "PPB24",
+    "description": "SKP24/1 Bueno tvarkarastis",
+    "button": { "text": "view", "href": "https://stmc-st-sk.edupage.org/timetable/view.php?class=-59" }
   }
 ]
+
