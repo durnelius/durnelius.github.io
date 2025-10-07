@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Starter Plan",
+    "description": "A clean baseline for simple sites and prototypes.",
+    "button": { "text": "Get started", "href": "https://example.com/start" }
+  },
+  {
+    "title": "Pro Tools",
+    "description": "Extra polish with zero bloat. Tweak the JSON, not the code.",
+    "button": { "text": "See features", "href": "https://example.com/features" }
+  }
+]
