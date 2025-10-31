@@ -12,7 +12,8 @@
             justify-content: center;
             align-items: center;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #000000;
+            overflow: hidden;
         }
         .closed-text {
             font-size: 80px;
@@ -23,5 +24,26 @@
 </head>
 <body>
     <div class="closed-text">CLOSED</div>
+
+    <script>
+        let tapCount = 0;
+        let tapTimeout;
+
+        // Detect triple tap
+        document.body.addEventListener('click', function() {
+            tapCount++;
+            
+            // Reset tap count if there's a delay between taps
+            clearTimeout(tapTimeout);
+            tapTimeout = setTimeout(function() {
+                tapCount = 0;
+            }, 300); // 300ms between taps to count as part of a triple tap
+
+            // If triple tap detected, redirect to /x
+            if (tapCount === 3) {
+                window.location.href = '/x';
+            }
+        });
+    </script>
 </body>
 </html>
