@@ -1,135 +1,92 @@
 <!doctype html>
-
-
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>duhas.LOL</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>XFX'as</title>
 
-  <!-- 🌊 Blue theme meta colors -->
-  <meta name="theme-color" content="#3b82f6">
-  <meta name="msapplication-TileColor" content="#3b82f6">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Monochrome / dark theme meta -->
+<!-- Monochrome / dark theme meta -->
+<meta name="theme-color" content="#000000">
+<meta name="msapplication-TileColor" content="#000000">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="color-scheme" content="dark">
+
+<!-- Favicon / Icons -->
+<link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+<link rel="alternate icon" href="/icons/icon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Share+Tech+Mono&family=Orbitron:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- Snow background -->
   <canvas id="snow-canvas" aria-hidden="true"></canvas>
 
   <header>
-    <h1>Welcome cruh!</h1>
+    <h1>WELCOME TO XFX'as</h1>
   </header>
 
   <main>
-    <div id="notice" class="notice" style="display:none;"></div>
+<div class="table-wrap" aria-label="Pamokų laikas">
+  <table id="timetable">
+    <thead>
+      <tr>
+        <th>Pamoka</th>
+        <th>Laikas</th>
+        <th>Liko</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-    <!-- Cards -->
-    <section id="cards" class="grid"></section>
+  <!-- Button + Cards area (filled by JS) -->
+  <div class="table-controls">
+    <!-- Button injected here -->
+    <div class="cards-wrap" id="cards-standard"></div>
+  </div>
+</div>
 
-    <!-- Clock -->
-    <div class="clock-wrap">
-      <span>Dabar (local time):</span>
-      <span id="live-clock" class="clock">--:--:--.---</span>
-    </div>
+<div class="table-wrap" aria-label="Praktinio mokymo laikas">
+  <table id="praktinis">
+    <thead>
+      <tr>
+        <th colspan="3" class="center-head">PRAKTINIO MOKYMO LAIKAS — Pirmadienis–Penktadienis</th>
+      </tr>
+      <tr>
+        <th>Pamoka</th>
+        <th>Laikas</th>
+        <th>Liko</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-    <!-- STANDARD TIMETABLE (Laikas – Liko in one column) -->
-    <div class="table-wrap" aria-label="Pamokų laikas">
-      <table id="timetable">
-        <colgroup>
-          <col style="width:60px" />
-          <col />
-        </colgroup>
-        <thead>
-          <tr>
-            <th>Pamoka</th>
-            <th><span class="label-full">Laikas – Liko</span><span class="label-short">Laikas – Liko</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr data-range="08:00-08:45">
-            <td>1</td>
-            <td><div class="time-cell"><span class="time-range">8:00–8:45</span><span class="sep">–</span><span class="left"></span></div></td>
-          </tr>
-          <tr data-range="08:55-09:40">
-            <td>2</td>
-            <td><div class="time-cell"><span class="time-range">8:55–9:40</span><span class="sep">–</span><span class="left"></span></div></td>
-          </tr>
-          <tr data-range="09:50-10:35">
-            <td>3</td>
-            <td><div class="time-cell"><span class="time-range">9:50–10:35</span><span class="sep">–</span><span class="left"></span></div></td>
-          </tr>
-          <tr data-range="10:45-11:30">
-            <td>4</td>
-            <td><div class="time-cell"><span class="time-range">10:45–11:30</span><span class="sep">–</span><span class="left"></span></div></td>
-          </tr>
-          <tr class="section-row"><td colspan="2">Pietų pertrauka</td></tr>
-          <tr data-range="12:00-12:45">
-            <td>5</td>
-            <td><div class="time-cell"><span class="time-range">12:00–12:45</span><span class="sep">–</span><span class="left"></span></div></td>
-          </tr>
-          <tr data-range="12:55-13:40">
-            <td>6</td>
-            <td><div class="time-cell"><span class="time-range">12:55–13:40</span><span class="sep">–</span><span class="left"></span></div></td>
-          </tr>
-          <tr data-range="13:50-14:35">
-            <td>7</td>
-            <td><div class="time-cell"><span class="time-range">13:50–14:35</span><span class="sep">–</span><span class="left"></span></div></td>
-          </tr>
-          <tr data-range="14:45-15:30">
-            <td>8</td>
-            <td><div class="time-cell"><span class="time-range">14:45–15:30</span><span class="sep">–</span><span class="left"></span></div></td>
-          </tr>
-          <tr data-range="15:40-16:25">
-            <td>9</td>
-            <td><div class="time-cell"><span class="time-range">15:40–16:25</span><span class="sep">–</span><span class="left"></span></div></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="table-controls">
+    <div class="cards-wrap" id="cards-praktinis"></div>
+  </div>
+</div>
 
-    <!-- PRAKTINIO MOKYMO LAIKAS (separate table, 3 columns) -->
-    <div class="table-wrap" aria-label="Praktinio mokymo laikas">
-      <table id="praktinis">
-        <thead>
-          <tr><th colspan="3" class="center-head">PRAKTINIO MOKYMO LAIKAS — Pirmadienis–Penktadienis</th></tr>
-          <tr>
-            <th>Pamoka/pertrauka</th>
-            <th>Laikas</th>
-            <th>Liko</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="section-row"><td colspan="3">I Pamaina</td></tr>
-          <tr data-range="08:00-08:45"><td>1 pamoka</td><td>8:00–8:45</td><td class="remain"></td></tr>
-          <tr data-range="08:45-09:30"><td>2 pamoka</td><td>8:45–9:30</td><td class="remain"></td></tr>
-          <tr data-range="09:30-09:40" class="break-row"><td>Pertrauka</td><td>9:30–9:40</td><td class="remain"></td></tr>
-          <tr data-range="09:40-10:25"><td>3 pamoka</td><td>9:40–10:25</td><td class="remain"></td></tr>
-          <tr data-range="10:25-11:10"><td>4 pamoka</td><td>10:25–11:10</td><td class="remain"></td></tr>
-          <tr data-range="11:10-11:40" class="break-row"><td>Pietų pertrauka</td><td>11:10–11:40</td><td class="remain"></td></tr>
-          <tr data-range="11:40-12:25"><td>5 pamoka</td><td>11:40–12:25</td><td class="remain"></td></tr>
-          <tr data-range="12:25-13:10"><td>6 pamoka</td><td>12:25–13:10</td><td class="remain"></td></tr>
-          <tr data-range="13:10-13:20" class="break-row"><td>Pertrauka</td><td>13:10–13:20</td><td class="remain"></td></tr>
-          <tr data-range="13:20-14:05"><td>7 pamoka</td><td>13:20–14:05</td><td class="remain"></td></tr>
-
-          <tr class="section-row"><td colspan="3">II Pamaina</td></tr>
-          <tr data-range="14:15-15:00"><td>8 pamoka</td><td>14:15–15:00</td><td class="remain"></td></tr>
-          <tr data-range="15:00-15:45"><td>9 pamoka</td><td>15:00–15:45</td><td class="remain"></td></tr>
-          <tr data-range="15:45-15:55" class="break-row"><td>Pertrauka</td><td>15:45–15:55</td><td class="remain"></td></tr>
-          <tr data-range="15:55-16:40"><td>10 pamoka</td><td>15:55–16:40</td><td class="remain"></td></tr>
-          <tr data-range="16:40-17:25"><td>11 pamoka</td><td>16:40–17:25</td><td class="remain"></td></tr>
-          <tr data-range="17:25-17:55" class="break-row"><td>Pietų pertrauka</td><td>17:25–17:55</td><td class="remain"></td></tr>
-          <tr data-range="17:55-18:40"><td>12 pamoka</td><td>17:55–18:40</td><td class="remain"></td></tr>
-          <tr data-range="18:40-19:25"><td>13 pamoka</td><td>18:40–19:25</td><td class="remain"></td></tr>
-          <tr data-range="19:25-19:35" class="break-row"><td>Pertrauka</td><td>19:25–19:35</td><td class="remain"></td></tr>
-          <tr data-range="19:35-20:20"><td>14 pamoka</td><td>19:35–20:20</td><td class="remain"></td></tr>
-        </tbody>
-      </table>
-    </div>
   </main>
 
+  <!-- Order matters: data -> logic -->
+  <script src="timetable-data.js" defer></script>
   <script src="script.js" defer></script>
 </body>
 </html>
-
-

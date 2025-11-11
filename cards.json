@@ -1,13 +1,13 @@
 [
   {
-    "title": "SKP24/1",
-    "description": "SKP24/1 Baxuru tvarkarastis",
-    "button": { "text": "view", "href": "https://stmc-st-sk.edupage.org/timetable/view.php?class=-67" }
-  },
-  {
     "title": "PPB24",
     "description": "SKP24/1 Bueno tvarkarastis",
     "button": { "text": "view", "href": "https://stmc-st-sk.edupage.org/timetable/view.php?class=-59" }
+  },
+  {
+    "title": "SKP24/1",
+    "description": "SKP24/1 Baxuru tvarkarastis",
+    "button": { "text": "view", "href": "https://stmc-st-sk.edupage.org/timetable/view.php?class=-67" }
   }
 ]
 

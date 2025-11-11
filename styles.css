@@ -1,154 +1,674 @@
 :root {
-  --bg: #030712;
-  --bg-top: #0c1326;
-  --card-bg: rgba(17, 25, 40, 0.35);
-  --text: #e2e8f0;
-  --muted: #9aa8bf;
-  --accent: #3b82f6;
-  --accent-glow: #60a5fa;
-  --radius: 14px;
-  --blur: 20px;
-  --ring: rgba(96,165,250,.35);
+  --bg: #020204;
+  --bg-top: #101018;
+  --card-bg: rgba(12, 12, 16, 0.85);
+  --text: #f5f5f5;
+  --muted: #a0a0aa;
+  --accent: #ffffff;
+  --accent-soft: #d4d4d4;
+  --radius: 10px;
+  --blur: 18px;
+  --ring: rgba(255,255,255,.35);
 }
 
+/* Global reset */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; overflow-x: hidden; }
+html, body { height: 100%; overflow-x: hidden;background: #000; }
+
+/* Monochrome scrollbars */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #bfbfbf #050507;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: #050507;
+  border: 1px solid #000;
+}
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(#d0d0d0, #808080);
+  border: 1px solid #000;
+}
+*::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.08);
+}
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: "Trebuchet MS", Tahoma, Verdana, sans-serif;
   color: var(--text);
   background:
-    radial-gradient(1200px 600px at 50% -10%, var(--bg-top), transparent 60%),
-    radial-gradient(800px 700px at 80% 120%, rgba(37, 99, 235, 0.06), transparent 60%),
+    radial-gradient(1200px 600px at 50% -10%, #111111, transparent 60%),
+    radial-gradient(900px 700px at 80% 120%, rgba(255,255,255,0.06), transparent 60%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.03) 0 1px,
+      rgba(0,0,0,0) 1px 3px
+    ),
     linear-gradient(#000000, var(--bg));
   background-attachment: fixed;
-  display: flex; flex-direction: column; align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   -webkit-font-smoothing: antialiased;
 }
 
-header { padding: 42px 16px 20px; text-align: center; position: relative; z-index: 1; }
-header h1 { font-size: clamp(24px, 3vw, 32px); margin-bottom: 6px; color: #f8fafc; letter-spacing: -0.01em; }
-header p  { color: var(--muted); font-size: 14px; }
 
-main { width: 100%; max-width: 1100px; padding: 0 16px 60px; position: relative; z-index: 1; }
+/* Header */
+header {
+  padding: 42px 16px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+header h1 {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(24px, 3vw, 32px);
+  margin-bottom: 6px;
+  color: #fafafa;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 #000;
+}
+header p {
+  color: var(--muted);
+  font-size: 14px;
+}
 
-/* ===== Cards ===== */
-.grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+/* Layout */
+main {
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 16px 60px;
+  position: relative;
+  z-index: 1;
+}
 
+/* Cards grid */
+.grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* Card */
 .card {
   background: var(--card-bg);
-  border-radius: var(--radius);
-  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.14);
   backdrop-filter: blur(var(--blur));
   -webkit-backdrop-filter: blur(var(--blur));
-  box-shadow: inset 0 0 10px rgba(96,165,250,0.1), 0 0 14px rgba(0,0,0,.3);
-  padding: 22px;
-  display: flex; flex-direction: column; gap: 12px;
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 0 14px rgba(0,0,0,.7);
+  padding: 16px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease,
+    background .2s ease;
 }
 .card:hover {
-  transform: translateY(-6px);
-  border-color: var(--accent-glow);
-  background: rgba(18, 28, 48, 0.52);
+  transform: translateY(-3px);
+  border-color: var(--accent-soft);
+  background: rgba(18,18,22,0.95);
   box-shadow:
-    inset 0 0 12px rgba(96,165,250,0.25),
-    0 0 16px rgba(96,165,250,0.35),
-    0 16px 38px rgba(0,0,0,.55);
+    inset 0 0 10px rgba(255,255,255,0.08),
+    0 14px 32px rgba(0,0,0,.9);
 }
 
-.card h2 { font-size: 18px; letter-spacing: -0.01em; color: #f8fbff; }
-.card p  { font-size: 14.5px; color: var(--muted); line-height: 1.55; }
-
-.btn {
-  display: block; width: 100%; text-align: center; padding: 12px 16px;
-  border-radius: 10px; background: linear-gradient(90deg, var(--accent), var(--accent-glow));
-  color: #fff; font-weight: 600; text-decoration: none; font-size: 14.5px; letter-spacing: .2px;
-  transition: box-shadow .2s ease, transform .1s ease, filter .15s ease;
-  box-shadow: 0 0 10px rgba(59,130,246,0.28); border: none;
+.card h2 {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f8f8f8;
 }
-.btn:hover { box-shadow: 0 0 22px rgba(96,165,250,0.7); transform: translateY(-2px); filter: saturate(1.05); }
-
-.notice {
-  background: rgba(255,255,255,0.05);
-  border: 1.5px solid rgba(96,165,250,0.28);
-  border-radius: var(--radius);
+.card p  {
+  font-size: 13px;
   color: var(--muted);
-  text-align: center; padding: 10px 14px; margin-bottom: 20px; backdrop-filter: blur(8px);
+  line-height: 1.55;
+}
+
+/* Button (monochrome chrome) */
+.btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 9px 12px;
+  border-radius: 3px;
+  background: linear-gradient(#f5f5f5, #b3b3b3);
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: .2px;
+  transition: box-shadow .15s ease, transform .1s ease, filter .15s ease;
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 0 8px rgba(255,255,255,0.15);
+  border: 1px solid #000;
+}
+.btn:hover {
+  box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 0 16px rgba(255,255,255,0.25);
+  transform: translateY(-1px);
+  filter: brightness(1.02);
+}
+
+/* Notice / alert */
+.notice {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 4px;
+  color: var(--muted);
+  text-align: left;
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  font-size: 13px;
 }
 
 /* Snow canvas */
-#snow-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; }
-
-/* ===== Timetables ===== */
-.clock-wrap { margin-top: 34px; display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 13.5px; }
-.clock {
-  font-variant-numeric: tabular-nums; font-weight: 700; color: #e5edff;
-  padding: 7px 10px; background: rgba(59,130,246,0.12);
-  border: 1px solid var(--ring); border-radius: 10px; box-shadow: inset 0 0 10px rgba(59,130,246,0.2);
+#snow-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
 }
 
+/* ===== Timetables ===== */
+
+/* ===== Responsive Local Time Clock ===== */
+
+/* Desktop default (already big enough) */
+.clock-wrap {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.clock {
+  font-family: "Share Tech Mono", "Fira Code", monospace;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #e5edff;
+  padding: 16px 22px;
+  background: rgba(59,130,246,0.15);
+  border: 2px solid var(--accent-glow);
+  border-radius: 14px;
+  box-shadow:
+    0 0 20px rgba(59,130,246,0.4),
+    inset 0 0 10px rgba(59,130,246,0.25);
+  text-shadow: 0 0 6px rgba(96,165,250,0.45);
+  transition: transform .2s ease, box-shadow .2s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Mobile: Make it a big centered box */
+@media (max-width: 600px) {
+  .clock-wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 0 14px;
+  }
+
+  .clock {
+    width: 100%;
+    font-size: 32px;         /* ⬅ larger text */
+    text-align: center;
+    padding: 28px 16px;      /* ⬅ big box feel */
+    border-radius: 18px;
+    background: rgba(59,130,246,0.18);
+    border: 2px solid rgba(96,165,250,0.5);
+    box-shadow:
+      0 0 40px rgba(59,130,246,0.55),
+      inset 0 0 16px rgba(59,130,246,0.35);
+  }
+
+  /* Optional: bump up label size too */
+  .clock-wrap span:first-child {
+    font-size: 17px;
+    color: #dbeafe;
+  }
+}
+
+
+/* Table container (panel) */
 .table-wrap {
-  margin-top: 10px; overflow-x: hidden; border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.06);
-  background: rgba(17,25,40,0.35);
+  margin-top: 14px;
+  overflow-x: auto;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(7,7,9,0.95);
   backdrop-filter: blur(10px);
 }
 
-table { width: 100%; border-collapse: collapse; min-width: 520px; color: var(--text); table-layout: fixed; font-size: 14px; }
-thead th {
-  font-weight: 700; text-align: left; padding: 9px 8px 8px;
-  background: rgba(59,130,246,0.12); border-bottom: 1px solid rgba(255,255,255,0.08); letter-spacing: .2px;
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+  color: var(--text);
+  table-layout: fixed;
+  font-size: 13px;
+  font-family: "Share Tech Mono", ui-monospace, Menlo, Consolas, monospace;
 }
-.center-head { text-align: center !important; }
 
+/* Table header */
+thead th {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: left;
+  padding: 7px 8px;
+  background: linear-gradient(#2a2a2f, #141418);
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+  border-right: 1px solid rgba(255,255,255,0.1);
+  color: #f5f5f5;
+}
+thead th:last-child {
+  border-right: none;
+}
+.center-head {
+  text-align: center !important;
+}
+
+/* Table body */
 tbody td {
   padding: 7px 8px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  color: #dbeafe;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  border-right: 1px solid rgba(255,255,255,0.06);
+  color: #f3f3f3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-tbody tr:last-child td { border-bottom: none; }
+tbody tr:nth-child(even) td {
+  background: rgba(255,255,255,0.015);
+}
+tbody tr:last-child td {
+  border-bottom: none;
+}
 
+/* Section rows */
 .section-row td {
-  background: rgba(255,255,255,0.045);
-  color: #a5c8ff;
+  background: rgba(255,255,255,0.06);
+  color: #f0f0f0;
+  font-family: "Orbitron", system-ui, sans-serif;
   font-weight: 700;
   letter-spacing: .2px;
+  text-transform: uppercase;
   text-align: center;
 }
 
-/* break rows in practical table */
-.break-row td { color: #c7e0ff; font-style: italic; }
+/* Break rows */
+.break-row td {
+  color: #e0e0e0;
+  font-style: italic;
+  background: rgba(255,255,255,0.02);
+}
 
-/* Standard table's combined "time – left" */
-.time-cell { display: inline-flex; align-items: baseline; gap: 6px; min-width: 0; }
-.time-range { color: #eaf2ff; }
-.sep { color: rgba(148,163,184,0.7); }
-.left, .remain {
-  font-family: ui-monospace, Menlo, Consolas, monospace;
+/* Time cell in first table */
+.time-cell {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+.time-range {
+  color: #ffffff;
+}
+.sep {
+  color: rgba(200,200,200,0.8);
+}
+.left,
+.remain {
+  font-family: "Share Tech Mono", ui-monospace, Menlo, Consolas, monospace;
   font-variant-numeric: tabular-nums;
-  color: #bfe1ff;
-  font-size: 13.5px;
+  color: #e4e4e4;
+  font-size: 12px;
   text-align: right;
 }
 
-/* Highlight (no layout shift) */
+/* Highlight current row */
 .now {
-  background: rgba(59,130,246,0.12);
-  outline: 2px solid var(--accent-glow);
-  outline-offset: -2px;
-  box-shadow: inset 0 0 10px rgba(96,165,250,.25), 0 0 12px rgba(96,165,250,.35);
+  background: rgba(255,255,255,0.06);
+  outline: 1px solid #ffffff;
+  outline-offset: -1px;
+  box-shadow:
+    inset 0 0 10px rgba(255,255,255,.25),
+    0 0 12px rgba(0,0,0,.9);
 }
 
 /* Mobile compact */
 .label-short { display: none; }
+
 @media (max-width: 600px) {
-  .clock-wrap { margin-top: 20px; font-size: 12.5px; }
-  .clock { padding: 6px 9px; font-size: 12.5px; }
-  table { min-width: 0; font-size: 13px; }
-  thead th, tbody td { padding: 6px 6px; }
-  .time-cell { gap: 4px; }
-  .left, .remain { font-size: 12px; }
+  .clock-wrap {
+    margin-top: 18px;
+    font-size: 12px;
+  }
+  .clock {
+    padding: 6px 9px;
+    font-size: 12px;
+  }
+  table {
+    min-width: 0;
+    font-size: 12px;
+  }
+  thead th,
+  tbody td {
+    padding: 6px 6px;
+  }
+  .time-cell {
+    gap: 4px;
+  }
+  .left,
+  .remain {
+    font-size: 11px;
+  }
   .label-full { display: none; }
   .label-short { display: inline; }
+}
+
+/* Past rows fade out a bit */
+tbody tr.past td {
+  opacity: 0.45;
+  color: #777;
+  transition: opacity 0.4s ease, color 0.4s ease, background-color 0.4s ease;
+}
+
+/* Optional: keep the zebra striping very subtle on past rows */
+tbody tr.past:nth-child(even) td {
+  background-color: rgba(255,255,255,0.02);
+}
+
+tbody tr.past td {
+  opacity: 0.45;
+  color: #777;
+  transition: opacity 0.4s ease, color 0.4s ease, background-color 0.4s ease;
+}
+/* ===== Icons for lessons / breaks / sections ===== */
+
+/* Base styling for the first column icon */
+#timetable tbody tr td:first-child,
+#praktinis tbody tr td:first-child {
+  position: relative;
+  padding-left: 22px; /* room for the icon */
+}
+
+/* Icon bubble */
+#timetable tbody tr td:first-child::before,
+#praktinis tbody tr td:first-child::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  width: 10px;
+  text-align: center;
+  opacity: 0.9;
+}
+
+/* Lesson rows: cross ✖ (dark blue) */
+#timetable tbody tr.type-lesson td:first-child::before,
+#praktinis tbody tr.type-lesson td:first-child::before {
+  content: "●";
+  color: #1e40af; /* dark blue tone */
+  text-shadow: 0 0 4px rgba(59,130,246,0.35); /* subtle glow */
+}
+
+/* Break rows: dot ● (gray) */
+#timetable tbody tr.type-break td:first-child::before,
+#praktinis tbody tr.type-break td:first-child::before {
+  content: "✖";
+  color: #555252; /* dark blue tone */
+  text-shadow: 0 0 4px rgba(59,130,246,0.35); /* subtle glow */
+}
+
+
+/* Section rows: diamond ◆ (before the centered label) */
+.section-row td {
+  position: relative;
+  padding-left: 26px;
+}
+.section-row td::before {
+  content: "◆";
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+
+/* ===== Dark toggle buttons under each table ===== */
+.table-mode-wrap {
+  margin-top: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.table-mode-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(#101010, #070707);
+  color: #f1f1f1;
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 0;
+  border: none;
+  cursor: pointer;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 0 6px rgba(255,255,255,0.04);
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.table-mode-btn:hover {
+  background: linear-gradient(#181818, #0d0d0d);
+  color: #ffffff;
+  box-shadow:
+    inset 0 0 10px rgba(255,255,255,0.1),
+    0 0 8px rgba(255,255,255,0.08);
+}
+
+/* Active state when toggled */
+.table-mode-btn.active {
+  background: linear-gradient(#0f172a, #1e293b);
+  color: #93c5fd;
+  box-shadow: 0 0 10px rgba(147,197,253,0.3), inset 0 0 8px rgba(147,197,253,0.25);
+}
+
+
+/* ===== Table Controls Container (button + cards) ===== */
+.table-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: transparent;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 10px;
+  margin-top: 6px;
+}
+
+/* ===== Table Mode Button (true/false toggle) ===== */
+/* ===== Full-width Table Mode Button ===== */
+.table-mode-btn {
+  background: #0d0d0d;
+  color: #f1f1f1;
+  font-family: "Share Tech Mono", "Fira Code", monospace;
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0; /* flush with table edges */
+  padding: 14px 0;
+  font-size: 15px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  width: 100%; /* expands across entire table width */
+  text-align: center;
+  box-shadow: inset 0 0 8px rgba(255,255,255,0.04);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+/* Hover: subtle light lift but no shift in width */
+.table-mode-btn:hover {
+  background: #151515;
+  border-color: #555;
+  box-shadow:
+    inset 0 0 10px rgba(255,255,255,0.1),
+    0 0 10px rgba(255,255,255,0.08);
+  transform: none;
+}
+
+/* Active: pressed look */
+.table-mode-btn:active {
+  background: #050505;
+  border-color: #666;
+  box-shadow: inset 0 0 8px rgba(255,255,255,0.12);
+}
+
+
+/* ===== Cards Section Below the Button ===== */
+.cards-wrap {
+  margin-top: 20px;
+  padding: 14px 14px 18px;
+  background: rgba(8, 8, 10, 0.9); /* blends with table background */
+  border: none; /* removes visible separation line */
+  border-radius: 0; /* flush with table edges */
+  box-shadow:
+    inset 0 0 12px rgba(255, 255, 255, 0.04),
+    0 0 30px rgba(0, 0, 0, 0.8); /* soft inner glow and depth */
+  backdrop-filter: blur(10px);
+}
+
+/* Grid layout for cards */
+.cards-wrap .grid-inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+/* ===== Card appearance — now flatter and more integrated ===== */
+.card {
+  background: rgba(16, 16, 20, 0.6);
+  border: none; /* no hard border */
+  border-radius: 6px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 2px 10px rgba(0, 0, 0, 0.5);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* Subtle lift on hover (no bright border) */
+.card:hover {
+  background: rgba(22, 22, 28, 0.75);
+  transform: translateY(-3px);
+  box-shadow:
+    0 4px 16px rgba(255, 255, 255, 0.05),
+    0 10px 28px rgba(0, 0, 0, 0.85);
+}
+
+/* Card text tweaks for legibility */
+.card h2 {
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #fafafa;
+}
+
+.card p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #b0b0b0;
+}
+
+/* ===== Section label under button/cards ===== */
+.table-section-label {
+  margin-top: 20px;
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Orbitron", system-ui, sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e5e5e5;
+  background: linear-gradient(#1a1a1a, #0a0a0a);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  backdrop-filter: blur(6px);
+}
+
+/* clickable Laikas header */
+th:nth-child(2) {
+  position: relative;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+/* hover: soft glow */
+th:nth-child(2):hover {
+  color: #93c5fd;
+  text-shadow: 0 0 8px rgba(147,197,253,0.4);
+}
+
+/* active (toggled on) */
+th:nth-child(2).active {
+  color: #60a5fa;
+  text-shadow: 0 0 10px rgba(96,165,250,0.6);
+}
+
+/* clickable Laikas header style */
+.laikas-toggle {
+  position: relative;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+.laikas-toggle:hover {
+  color: #93c5fd;
+  text-shadow: 0 0 8px rgba(147,197,253,0.4);
+}
+.laikas-toggle.active {
+  color: #60a5fa;
+  text-shadow: 0 0 10px rgba(96,165,250,0.6);
 }
