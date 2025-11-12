@@ -661,6 +661,7 @@ th:nth-child(2).active {
 
 /* clickable Laikas header style */
 .laikas-toggle {
+  color: #93c5fd;
   position: relative;
   transition: color 0.2s ease, text-shadow 0.2s ease;
 }
