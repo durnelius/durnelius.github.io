@@ -9,20 +9,18 @@
   <title>XFX'as</title>
 
   <!-- Monochrome / dark theme meta -->
-<!-- Monochrome / dark theme meta -->
-<meta name="theme-color" content="#000000">
-<meta name="msapplication-TileColor" content="#000000">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#000000">
+  <meta name="msapplication-TileColor" content="#000000">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="color-scheme" content="dark">
 
-<!-- Favicon / Icons -->
-<link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
-<link rel="alternate icon" href="/icons/icon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
-<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-<link rel="manifest" href="/manifest.json">
-
+  <!-- Favicon / Icons -->
+  <link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+  <link rel="alternate icon" href="/icons/icon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.json">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,6 +31,85 @@
   >
 
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Minimal additions to match your theme and table width -->
+  <style>
+    /* The form is placed inside .table-wrap so it inherently matches table width */
+    .jumper-form {
+      display: grid;
+      grid-template-columns: 1fr auto; /* input grows, button hugs */
+      gap: 10px;
+      padding: 12px; /* matches your panel padding vibe */
+      align-items: center;
+    }
+    .jumper-form label {
+      display: none; /* purely visual cleanliness; keep aria-label on input */
+    }
+    .jumper-input {
+      width: 100%;
+      appearance: textfield;
+      -moz-appearance: textfield;
+      background: #0b0b0f;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-family: "Share Tech Mono","Fira Code",monospace;
+      font-size: 16px;
+      letter-spacing: .5px;
+      outline: none;
+      box-shadow:
+        inset 0 0 10px rgba(255,255,255,0.05),
+        0 0 14px rgba(0,0,0,.6);
+      transition: border-color .2s ease, box-shadow .2s ease, transform .08s ease;
+      text-align: center;
+    }
+    .jumper-input:focus {
+      border-color: #93c5fd;
+      box-shadow:
+        0 0 16px rgba(147,197,253,0.35),
+        inset 0 0 12px rgba(147,197,253,0.15);
+      transform: translateY(-1px);
+    }
+    .jumper-btn {
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: linear-gradient(#181818, #0d0d0d);
+      color: #f1f1f1;
+      font-family: "Orbitron", system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: inset 0 0 6px rgba(255,255,255,0.06);
+      transition: background .2s ease, color .2s ease, box-shadow .2s ease, transform .08s ease;
+      min-width: 88px;
+    }
+    .jumper-btn:hover {
+      background: linear-gradient(#202020, #121212);
+      box-shadow:
+        inset 0 0 10px rgba(255,255,255,0.1),
+        0 0 8px rgba(255,255,255,0.08);
+    }
+    .jumper-btn:active {
+      transform: translateY(1px);
+      background: #0a0a0a;
+    }
+    .jumper-hint {
+      grid-column: 1 / -1;
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .jumper-form { grid-template-columns: 1fr auto; }
+      .jumper-btn { padding: 12px 14px; min-width: 76px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -44,49 +121,85 @@
   </header>
 
   <main>
-<div class="table-wrap" aria-label="Pamokų laikas">
-  <table id="timetable">
-    <thead>
-      <tr>
-        <th>Pamoka</th>
-        <th>Laikas</th>
-        <th>Liko</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <!-- NEW: Input bar inside a .table-wrap (exact same width as tables) -->
+    <div class="table-wrap" aria-label="Quick jump">
+      <form id="goto-form" class="jumper-form" autocomplete="off" novalidate>
+        <label for="goto-number">Go to</label>
+        <input
+          id="goto-number"
+          name="n"
+          class="jumper-input"
+          type="number"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          placeholder="67, 59, 75 etc."
+          aria-label="67, 59, 75 etc."
+          min="0"
+          step="1"
+          required
+        />
+        <button type="submit" class="jumper-btn">Go</button>
+      </form>
+    </div>
 
-  <!-- Button + Cards area (filled by JS) -->
-  <div class="table-controls">
-    <!-- Button injected here -->
-    <div class="cards-wrap" id="cards-standard"></div>
-  </div>
-</div>
+    <div class="table-wrap" aria-label="Pamokų laikas">
+      <table id="timetable">
+        <thead>
+          <tr>
+            <th>Pamoka</th>
+            <th>Laikas</th>
+            <th>Liko</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
 
-<div class="table-wrap" aria-label="Praktinio mokymo laikas">
-  <table id="praktinis">
-    <thead>
-      <tr>
-        <th colspan="3" class="center-head">PRAKTINIO MOKYMO LAIKAS — Pirmadienis–Penktadienis</th>
-      </tr>
-      <tr>
-        <th>Pamoka</th>
-        <th>Laikas</th>
-        <th>Liko</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-
-  <div class="table-controls">
-    <div class="cards-wrap" id="cards-praktinis"></div>
-  </div>
-</div>
-
+    <div class="table-wrap" aria-label="Praktinio mokymo laikas">
+      <table id="praktinis">
+        <thead>
+          <tr>
+            <th colspan="3" class="center-head">PRAKTINIO MOKYMO LAIKAS — Pirmadienis–Penktadienis</th>
+          </tr>
+          <tr>
+            <th>Pamoka</th>
+            <th>Laikas</th>
+            <th>Liko</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </main>
 
   <!-- Order matters: data -> logic -->
   <script src="timetable-data.js" defer></script>
   <script src="script.js" defer></script>
+
+  <!-- Redirect logic for the number input -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('goto-form');
+      var input = document.getElementById('goto-number');
+
+      function go() {
+        var val = (input.value || '').trim();
+        if (!val) return;
+        window.location.href = 'https://stmc-st-sk.edupage.org/timetable/view.php?class=-' + encodeURIComponent(val);
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        go();
+      });
+
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          go();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
